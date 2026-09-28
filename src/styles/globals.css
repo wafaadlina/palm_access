@@ -1,0 +1,45 @@
+/* ── Overlay scrollbar — hidden at rest, fades in on hover/scroll ─────────── */
+
+/* Firefox — thin thumb, transparent track. Firefox doesn't support overlay
+   scrollbars natively but "thin" keeps layout space minimal. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+*:hover {
+  scrollbar-color: rgba(0, 0, 0, 0.18) transparent;
+}
+
+/* Chrome / Safari / Edge ---------------------------------------------------- */
+
+/* Reserve zero layout space — scrollbar overlays the content */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Thumb: invisible by default */
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 9999px;
+  transition: background-color 0.25s ease;
+}
+
+/* Fade thumb in when the container is hovered */
+*:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.18);
+}
+
+/* Slightly darker while actively dragging */
+*::-webkit-scrollbar-thumb:active {
+  background-color: rgba(0, 0, 0, 0.32);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
